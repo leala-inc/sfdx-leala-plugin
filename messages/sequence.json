@@ -1,0 +1,11 @@
+{
+  "commandDescription": "Sequentially invoke all Apex tests or suites with code coverage",
+  "typeDescription": "request test type; test classes or test suites",
+  "typeLongDescription": "Permissible values are: classes, suites",
+  "sizeDescription": "number of Apex test classes or Apex test suites to run for each",
+  "examples": [
+    "sfdx leala:apex:test:sequence --type classes --size 20 -r human",
+    "sfdx leala:apex:test:sequence --type suites --size 1 -r json"
+  ],
+  "anonymousExecuteError": "Error: cannot get test classes. Make sure unofficial method that retrieve test classes works"
+}
