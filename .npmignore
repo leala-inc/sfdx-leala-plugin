@@ -1,0 +1,8 @@
+node_modules
+
+.DS_Store
+.sfdx
+sfdx-project.json
+
+.env
+.vscode/settings.json

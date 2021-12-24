@@ -11,6 +11,8 @@ A plugin for Salesforce CLI build by LEALA Inc.
 [![License](https://img.shields.io/npm/l/sfdx-leala-plugin.svg)](https://github.com/leala-inc/sfdx-leala-plugin/blob/master/package.json)
 
 <!-- toc -->
+* [sfdx-leala-plugin](#sfdx-leala-plugin)
+<!-- tocstop -->
 
 ## Setup
 
@@ -29,48 +31,62 @@ A plugin for Salesforce CLI build by LEALA Inc.
 4. Link the plugin: `sfdx plugins:link` .
 
 <!-- install stop -->
-<!-- commands -->
-
 ## Commands
 
-* [`sfdx leala:apex:test:sequence`](#sfdx-lealaapextestsequence)
+<!-- commands -->
+* [`sfdx leala:apex:test:sequence -e <string> -z <integer> -r human|tap|junit|json [-d <string>] [-w <string>] [-v] [-u <string>] [--apiversion <string>] [--verbose] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-lealaapextestsequence--e-string--z-integer--r-humantapjunitjson--d-string--w-string--v--u-string---apiversion-string---verbose---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
+## `sfdx leala:apex:test:sequence -e <string> -z <integer> -r human|tap|junit|json [-d <string>] [-w <string>] [-v] [-u <string>] [--apiversion <string>] [--verbose] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
-## `sfdx leala:apex:test:sequence`
-
-Sequentially invoke all Apex tests or suites with code coverage.  
-As of December 2021, when running `RunLocalTests` with code coverage contains a very large number of (, or large size of) apex tests, the connection may be cancelled due to a timeout and some tests may not be completed with `sfdx force:apex:test:run` command.  
-This command will be sequentially invoked all apex test classes or apex test suites by the specified number each.  
-Some arguments from `sfdx force:apex:test:run` are fixed.
-
-* --codecoverage: true (and -r,--resultformat is required)
-* --testlevel: RunSpecifiedTests
-* --synchronous: false (classes only, currently not supported)
-
-**Warning**: The way to get the apex test class list is **unofficial** and may stop working in the future.
+Sequentially invoke all Apex tests or suites with code coverage
 
 ```
 USAGE
-  $ sfdx leala:apex:test:sequence -e <string> -z <integer> -r human|tap|junit|json [-d <string>] [-w <string>] [-v] [-u <string>] [--apiversion <string>] [--verbose] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+  $ sfdx leala:apex:test:sequence -e <string> -z <integer> -r human|tap|junit|json [-d <string>] [-w <string>] [-v] [-u 
+  <string>] [--apiversion <string>] [--verbose] [--json] [--loglevel 
+  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
   -d, --outputdir=outputdir                                                         directory to store test run files
-  -e, --type=classes|suites                                                     (required) [default: classes] request test type; test classes or test suites
-  -r, --resultformat=(human|tap|junit|json)                                         (required) Permissible values are: human, tap, junit, json
-  -u, --targetusername=targetusername                                               username or alias for the target org; overrides default target org
-  -v, --detailedcoverage                                                            display detailed code coverage per test
-  -w, --wait=wait                                                                   sets the streaming client socket timeout in minutes; specify a longer wait time if timeouts occur frequently
-  -z, --size=size                                                           (required) [default: 10] number of Apex test classes or Apex test suites to run for each
-  --apiversion=apiversion                                                           override the api version used for api requests made by this command
+
+  -e, --type=classes|suites                                                         (required) [default: classes]
+                                                                                    request test type; test classes or
+                                                                                    test suites
+
+  -r, --resultformat=(human|tap|junit|json)                                         (required) Permissible values are:
+                                                                                    human, tap, junit, json
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  -v, --detailedcoverage                                                            display detailed code coverage per
+                                                                                    test
+
+  -w, --wait=wait                                                                   sets the streaming client socket
+                                                                                    timeout in minutes; specify a longer
+                                                                                    wait time if timeouts occur
+                                                                                    frequently
+
+  -z, --size=size                                                                   (required) [default: 10] number of
+                                                                                    Apex test classes or Apex test
+                                                                                    suites to run for each
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
   --json                                                                            format output as json
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] [default: warn] logging level for this command invocation; logs are stored in $HOME/.sfdx/sfdx.log
-  --verbose                                                                         display Apex test processing details; if JSON is specified, processing details aren't displayed
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+  --verbose                                                                         display Apex test processing
+                                                                                    details; if JSON is specified,
+                                                                                    processing details aren't displayed
 
 EXAMPLES
-  sfdx leala:apex:test:run --type classes --size 20 -r human
-  sfdx leala:apex:test:run --type suites --size 1 -r json
+  sfdx leala:apex:test:sequence --type classes --size 20 -r human
+  sfdx leala:apex:test:sequence --type suites --size 1 -r json
 ```
 
-_See code: [src/commands/leala/apex/test/sequence.ts](https://github.com/leala-inc/sfdx-leala-plugin/blob/v0.0.0/src/commands/leala/apex/test/sequence.ts)_
-
-<!-- commands stop -->
+_See code: [src/commands/leala/apex/test/sequence.ts](https://github.com/leala-inc/sfdx-leala-plugin/blob/v0.0.1/src/commands/leala/apex/test/sequence.ts)_
+<!-- commandsstop -->

@@ -28,9 +28,9 @@ import cli from 'cli-ux';
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
 
-const messages = Messages.loadMessages('sfdx-leala-plugin', 'sequence');
+const messages = Messages.loadMessages('@leala-inc/sfdx-leala-plugin', 'sequence');
 // TODO: Can I load from other package plugins? Messages.loadMessages('@salesforce/plugin-apex', 'run') doesn't work.
-const origRunMessages = Messages.loadMessages('sfdx-leala-plugin', 'run.orig');
+const origRunMessages = Messages.loadMessages('@leala-inc/sfdx-leala-plugin', 'run.orig');
 
 const scriptFilePath = __dirname + '/../../../../scripts/GetTestClassList.apex';
 
