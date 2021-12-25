@@ -1,7 +1,7 @@
 {
   "name": "@leala-inc/sfdx-leala-plugin",
   "description": "A plugin for Salesforce CLI build by LEALA Inc.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "LEALA Inc.",
   "bugs": "https://github.com/leala-inc/sfdx-leala-plugin/issues",
   "dependencies": {
