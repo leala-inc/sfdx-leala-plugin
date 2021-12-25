@@ -21,16 +21,31 @@ import {
 import { CodeCoverage } from '@salesforce/apex-node/lib/src/tests/codeCoverage';
 import { calculatePercentage } from '@salesforce/apex-node/lib/src/tests/utils';
 import { getCurrentTime } from '@salesforce/apex-node/lib/src/utils';
-import { buildOutputDirConfig, CliJsonFormat, JsonReporter } from '@salesforce/plugin-apex/lib/reporters';
-import { colorSuccess, colorError, resultFormat, FAILURE_EXIT_CODE } from '@salesforce/plugin-apex/lib/utils';
+import {
+  buildOutputDirConfig,
+  CliJsonFormat,
+  JsonReporter,
+} from '@salesforce/plugin-apex/lib/reporters';
+import {
+  colorSuccess,
+  colorError,
+  resultFormat,
+  FAILURE_EXIT_CODE,
+} from '@salesforce/plugin-apex/lib/utils';
 import cli from 'cli-ux';
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
 
-const messages = Messages.loadMessages('@leala-inc/sfdx-leala-plugin', 'sequence');
+const messages = Messages.loadMessages(
+  '@leala-inc/sfdx-leala-plugin',
+  'sequence'
+);
 // TODO: Can I load from other package plugins? Messages.loadMessages('@salesforce/plugin-apex', 'run') doesn't work.
-const origRunMessages = Messages.loadMessages('@leala-inc/sfdx-leala-plugin', 'run.orig');
+const origRunMessages = Messages.loadMessages(
+  '@leala-inc/sfdx-leala-plugin',
+  'run.orig'
+);
 
 const scriptFilePath = __dirname + '/../../../../scripts/GetTestClassList.apex';
 
@@ -79,7 +94,8 @@ export default class Sequence extends SfdxCommand {
   protected static requiresUsername = true;
   protected static requiresProject = false;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
-  protected cancellationTokenSource: CancellationTokenSource = new CancellationTokenSource();
+  protected cancellationTokenSource: CancellationTokenSource =
+    new CancellationTokenSource();
 
   public async run(): Promise<AnyJson> {
     // this.org is guaranteed because requiresUsername=true, as opposed to supportsUsername
@@ -100,7 +116,11 @@ export default class Sequence extends SfdxCommand {
 
     // strict progress
     interface OclifProgress {
-      start(total: number, startValue?: number, payload?: Record<string, string>): void;
+      start(
+        total: number,
+        startValue?: number,
+        payload?: Record<string, string>
+      ): void;
       update(current: number, payload?: Record<string, string>): void;
       stop(): void;
     }
@@ -151,7 +171,11 @@ export default class Sequence extends SfdxCommand {
     }
     bar.stop();
 
-    const totalTestResult = await this.getTotalTestResult(conn, results, startTime);
+    const totalTestResult = await this.getTotalTestResult(
+      conn,
+      results,
+      startTime
+    );
     if (this.flags.outputdir) {
       const jsonOutput = this.formatResultInJson(totalTestResult);
       const outputDirConfig = buildOutputDirConfig(
@@ -162,7 +186,11 @@ export default class Sequence extends SfdxCommand {
         this.flags.detailedcoverage,
         false // asynchronous
       );
-      await testService.writeResultFiles(totalTestResult, outputDirConfig, true);
+      await testService.writeResultFiles(
+        totalTestResult,
+        outputDirConfig,
+        true
+      );
     }
 
     try {
@@ -176,7 +204,11 @@ export default class Sequence extends SfdxCommand {
 
       switch (this.flags.resultformat) {
         case 'human':
-          this.logHuman(totalTestResult, this.flags.detailedcoverage, this.flags.outputdir);
+          this.logHuman(
+            totalTestResult,
+            this.flags.detailedcoverage,
+            this.flags.outputdir
+          );
           break;
         case 'tap':
           this.logTap(totalTestResult);
@@ -249,7 +281,9 @@ export default class Sequence extends SfdxCommand {
     const diagnostic = response.diagnostic[0];
 
     if (!response.compiled) {
-      outputText += colorError(`Error: Line: ${diagnostic.lineNumber}, Column: ${diagnostic.columnNumber}\n`);
+      outputText += colorError(
+        `Error: Line: ${diagnostic.lineNumber}, Column: ${diagnostic.columnNumber}\n`
+      );
       outputText += colorError(`Error: ${diagnostic.compileProblem}\n`);
     } else {
       outputText += colorSuccess('Compiled successfully.\n');
@@ -264,7 +298,9 @@ export default class Sequence extends SfdxCommand {
     const argumentList: string[] = [];
     for (let i = 0; i < Math.ceil(targetList.length / this.flags.size); i++) {
       const start = i * this.flags.size;
-      argumentList.push(targetList.slice(start, start + (this.flags.size as number)).join(','));
+      argumentList.push(
+        targetList.slice(start, start + (this.flags.size as number)).join(',')
+      );
     }
     return argumentList;
   }
@@ -275,14 +311,17 @@ export default class Sequence extends SfdxCommand {
     startTime: number
   ): Promise<TestResult> {
     const codeCov = new CodeCoverage(conn);
-    const { coveredApexClassIdSet, globalTestResult } = this.aggregateAsyncTestResults(conn, testResults, startTime);
-    const { codeCoverageResults, totalLines, coveredLines } = await codeCov.getAggregateCodeCoverage(
-      coveredApexClassIdSet
-    );
+    const { coveredApexClassIdSet, globalTestResult } =
+      this.aggregateAsyncTestResults(conn, testResults, startTime);
+    const { codeCoverageResults, totalLines, coveredLines } =
+      await codeCov.getAggregateCodeCoverage(coveredApexClassIdSet);
 
     globalTestResult.summary.totalLines = totalLines;
     globalTestResult.summary.coveredLines = coveredLines;
-    globalTestResult.summary.testRunCoverage = calculatePercentage(coveredLines, totalLines);
+    globalTestResult.summary.testRunCoverage = calculatePercentage(
+      coveredLines,
+      totalLines
+    );
     globalTestResult.codecoverage = codeCoverageResults;
 
     return globalTestResult;
@@ -361,7 +400,11 @@ export default class Sequence extends SfdxCommand {
   }
 
   // original apex/test/run private method
-  private logHuman(result: TestResult, detailedCoverage: boolean, outputDir: string): void {
+  private logHuman(
+    result: TestResult,
+    detailedCoverage: boolean,
+    outputDir: string
+  ): void {
     if (outputDir) {
       this.ux.log(origRunMessages.getMessage('outputDirHint', [outputDir]));
     }
@@ -381,11 +424,15 @@ export default class Sequence extends SfdxCommand {
     this.ux.log(reporter.format(result));
   }
 
-  private formatResultInJson(result: TestResult | TestRunIdResult): CliJsonFormat | TestRunIdResult {
+  private formatResultInJson(
+    result: TestResult | TestRunIdResult
+  ): CliJsonFormat | TestRunIdResult {
     try {
       const reporter = new JsonReporter();
       // eslint-disable-next-line no-prototype-builtins
-      return result.hasOwnProperty('summary') ? reporter.format(result as TestResult) : (result as TestRunIdResult);
+      return result.hasOwnProperty('summary')
+        ? reporter.format(result as TestResult)
+        : (result as TestRunIdResult);
     } catch (e) {
       this.ux.logJson(result);
       const msg = origRunMessages.getMessage('testResultProcessErr', [e]);
@@ -399,7 +446,9 @@ export default class Sequence extends SfdxCommand {
     if (this.flags.targetusername) {
       reportArgs += ` -u ${this.flags.targetusername as string}`;
     }
-    const hint = origRunMessages.getMessage('apexTestReportFormatHint', [reportArgs]);
+    const hint = origRunMessages.getMessage('apexTestReportFormatHint', [
+      reportArgs,
+    ]);
     return hint;
   }
 }

@@ -77,9 +77,6 @@
     ]
   },
   "repository": "leala-inc/sfdx-leala-plugin",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "tsc -p .",
     "lint": "eslint src/**/*.ts test/**/*.ts",
