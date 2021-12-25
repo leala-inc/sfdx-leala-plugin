@@ -1,4 +1,9 @@
-// https://salesforce.stackexchange.com/questions/122870/how-to-get-a-list-of-test-classes-in-an-org
+/**
+ * CC BY-SA 4.0
+ * https://salesforce.stackexchange.com/questions/122870/how-to-get-a-list-of-test-classes-in-an-org
+ * asked: Chathura https://salesforce.stackexchange.com/users/28984/chathura
+ * answered: Valentos https://salesforce.stackexchange.com/users/44629/valentos
+ */
 Http http = new Http();
 HttpRequest request = new HttpRequest();
 request.setEndpoint(URL.getOrgDomainUrl().toExternalForm() + '/_ui/common/apex/test/ApexTestQueueServlet');

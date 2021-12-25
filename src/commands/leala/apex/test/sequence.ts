@@ -41,7 +41,7 @@ const messages = Messages.loadMessages(
   '@leala-inc/sfdx-leala-plugin',
   'sequence'
 );
-// TODO: Can I load from other package plugins? Messages.loadMessages('@salesforce/plugin-apex', 'run') doesn't work.
+// Messages.loadMessages('@salesforce/plugin-apex', 'run') doesn't work.
 const origRunMessages = Messages.loadMessages(
   '@leala-inc/sfdx-leala-plugin',
   'run.orig'
@@ -267,7 +267,7 @@ export default class Sequence extends SfdxCommand {
 
   private extractTestClasses(response: ExecuteAnonymousResponse): string[] {
     const targets: string[] = [];
-    response.logs.split('\n').forEach((line) => {
+    response.logs?.split('\n').forEach((line) => {
       const group = /\|USER_DEBUG|.*\|DEBUG\|(.*)/.exec(line);
       if (group) {
         targets.push(group[1]);

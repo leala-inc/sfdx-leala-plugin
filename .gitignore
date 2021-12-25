@@ -13,3 +13,5 @@ node_modules
 oclif.manifest.json
 .sfdx
 sfdx-project.json
+
+coverage

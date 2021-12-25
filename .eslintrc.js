@@ -18,4 +18,12 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['*.test.ts', '*.spec.ts', '*.nut.ts'],
+      rules: {
+        'no-unused-expressions': 'off',
+      },
+    },
+  ],
 };

@@ -20,6 +20,7 @@
     "@oclif/dev-cli": "^1",
     "@oclif/plugin-help": "^3",
     "@oclif/test": "^1",
+    "@salesforce/cli-plugins-testkit": "^1",
     "@salesforce/dev-config": "^2",
     "@salesforce/dev-scripts": "^0",
     "@salesforce/prettier-config": "^0",
@@ -84,6 +85,8 @@
     "posttest": "eslint src/**/*.ts test/**/*.ts",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+    "test-nut": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.nut.ts\"",
+    "cover": "nyc --reporter=lcov --reporter=text npm run test",
     "version": "oclif-dev readme && git add README.md"
   }
 }
