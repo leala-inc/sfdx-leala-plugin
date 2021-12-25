@@ -12,8 +12,18 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto',
+        printWidth: 80,
+        tabWidth: 2,
+        singleQuote: true,
       },
     ],
   },
+  overrides: [
+    {
+      files: ['*.test.ts', '*.spec.ts', '*.nut.ts'],
+      rules: {
+        'no-unused-expressions': 'off',
+      },
+    },
+  ],
 };

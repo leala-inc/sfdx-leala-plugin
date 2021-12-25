@@ -1,7 +1,7 @@
 {
   "name": "@leala-inc/sfdx-leala-plugin",
   "description": "A plugin for Salesforce CLI build by LEALA Inc.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "LEALA Inc.",
   "bugs": "https://github.com/leala-inc/sfdx-leala-plugin/issues",
   "dependencies": {
@@ -20,6 +20,7 @@
     "@oclif/dev-cli": "^1",
     "@oclif/plugin-help": "^3",
     "@oclif/test": "^1",
+    "@salesforce/cli-plugins-testkit": "^1",
     "@salesforce/dev-config": "^2",
     "@salesforce/dev-scripts": "^0",
     "@salesforce/prettier-config": "^0",
@@ -77,9 +78,6 @@
     ]
   },
   "repository": "leala-inc/sfdx-leala-plugin",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "tsc -p .",
     "lint": "eslint src/**/*.ts test/**/*.ts",
@@ -87,6 +85,8 @@
     "posttest": "eslint src/**/*.ts test/**/*.ts",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+    "test-nut": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.nut.ts\"",
+    "cover": "nyc --reporter=lcov --reporter=text npm run test",
     "version": "oclif-dev readme && git add README.md"
   }
 }
