@@ -3,12 +3,12 @@
 A plugin for Salesforce CLI build by LEALA Inc.
 
 [![Version](https://img.shields.io/npm/v/@leala-inc/sfdx-leala-plugin.svg)](https://npmjs.org/package/@leala-inc/sfdx-leala-plugin)
-[![CircleCI](https://circleci.com/gh/leala-inc/sfdx-leala-plugin/tree/master.svg?style=shield)](https://circleci.com/gh/leala-inc/sfdx-leala-plugin/tree/master)
-[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/leala-inc/sfdx-leala-plugin?branch=master&svg=true)](https://ci.appveyor.com/project/heroku/sfdx-leala-plugin/branch/master)
+[![CircleCI](https://circleci.com/gh/leala-inc/sfdx-leala-plugin/tree/main.svg?style=shield)](https://circleci.com/gh/leala-inc/sfdx-leala-plugin/tree/main)
+[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/leala-inc/sfdx-leala-plugin?branch=main&svg=true)](https://ci.appveyor.com/project/heroku/sfdx-leala-plugin/branch/main)
 [![Greenkeeper](https://badges.greenkeeper.io/leala-inc/sfdx-leala-plugin.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/leala-inc/sfdx-leala-plugin/badge.svg)](https://snyk.io/test/github/leala-inc/sfdx-leala-plugin)
 [![Downloads/week](https://img.shields.io/npm/dw/@leala-inc/sfdx-leala-plugin.svg)](https://npmjs.org/package/@leala-inc/sfdx-leala-plugin)
-[![License](https://img.shields.io/npm/l/@leala-inc/sfdx-leala-plugin.svg)](https://github.com/leala-inc/sfdx-leala-plugin/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/@leala-inc/sfdx-leala-plugin.svg)](https://github.com/leala-inc/sfdx-leala-plugin/blob/main/package.json)
 
 <!-- toc -->
 * [sfdx-leala-plugin](#sfdx-leala-plugin)
