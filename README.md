@@ -101,5 +101,5 @@ EXAMPLES
   sfdx leala:apex:test:sequence --type suites --size 1 -r json
 ```
 
-_See code: [src/commands/leala/apex/test/sequence.ts](https://github.com/leala-inc/sfdx-leala-plugin/blob/v0.0.4/src/commands/leala/apex/test/sequence.ts)_
+_See code: [src/commands/leala/apex/test/sequence.ts](https://github.com/leala-inc/sfdx-leala-plugin/blob/v0.0.5/src/commands/leala/apex/test/sequence.ts)_
 <!-- commandsstop -->
