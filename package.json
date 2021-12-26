@@ -1,7 +1,7 @@
 {
   "name": "@leala-inc/sfdx-leala-plugin",
   "description": "A plugin for Salesforce CLI build by LEALA Inc.",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "author": "LEALA Inc.",
   "bugs": "https://github.com/leala-inc/sfdx-leala-plugin/issues",
   "dependencies": {
@@ -57,6 +57,7 @@
   "files": [
     "/lib",
     "/messages",
+    "/scripts",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
